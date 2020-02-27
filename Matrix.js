@@ -99,16 +99,6 @@ class Matrix {
     return res;
   }
 
-  static copyMatrix(a) {
-    let res = new Matrix(a.rows, a.cols);
-    for (let i = 0; i < a.rows; i++) {
-      for (let j = 0; j < a.cols; j++) {
-        res.mat[i][j] = a.mat[i][j];
-      }
-    }
-    return res;
-  }
-
   static matrixMap(a, fn) {
     let tmp = new Matrix(a.rows, a.cols);
     tmp = Matrix.copyMatrix(a);
@@ -120,6 +110,16 @@ class Matrix {
     return tmp;
   }
 
+  static copyMatrix(a) {
+    let res = new Matrix(a.rows, a.cols);
+    for (let i = 0; i < a.rows; i++) {
+      for (let j = 0; j < a.cols; j++) {
+        res.mat[i][j] = a.mat[i][j];
+      }
+    }
+    return res;
+  }
+  
   randomize() {
     for (let i = 0; i < this.rows; i++) {
       for (let j = 0; j < this.cols; j++) {
@@ -159,6 +159,15 @@ class Matrix {
         if(Math.random() < mr){
           this.mat[i][j] += randomGaussian(0,0.1);
         }
+      }
+    }
+  }
+  copyMatrix(a) {
+    this.rows = a.rows;
+    this.cols = a.cols;
+    for (let i = 0; i < this.rows; i++) {
+      for (let j = 0; j < this.cols; j++) {
+        this.mat[i][j] = a.mat[i][j];
       }
     }
   }

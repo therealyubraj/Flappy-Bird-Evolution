@@ -7,9 +7,13 @@ function createPopulation(){
     let tmp = pickOne();
     newBirds[i] = new Bird();
     newBirds[i].copyBrain(tmp);
-    newBirds[i].mutateBird(MR);
   }
-  bird = newBirds;
+  for(let i = 0;i < bird.length;i++){
+    let tmp = newBirds[i];
+    bird[i] = new Bird();
+    bird[i].copyBrain(tmp);
+    bird[i].mutateBird(MR);
+  }
 }
 
 function pickOne(){

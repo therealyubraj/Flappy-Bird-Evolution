@@ -17,14 +17,18 @@ function setup() {
     bird[i] = new Bird();
   }
   resetObstacles();
+  for(let i = 0;i < 50;i++){
+    birdFunctions(false);
+    obstacleFunctions(false);
+  }
 }
 
 
 function draw() {
   background(0);
   for(let i = 0;i < slider.value();i++){
-    birdFunctions();
-    obstacleFunctions();
+    birdFunctions(true);
+    obstacleFunctions(true);
 
     fill(255,0,0);
     textSize(25);
@@ -40,7 +44,7 @@ function resetObstacles() {
   }
 }
 
-function birdFunctions() {
+function birdFunctions(s) {
   let reset = true;
   for(let i = 0;i < popnSize;i++){
     if(!bird[i].death){
@@ -51,7 +55,9 @@ function birdFunctions() {
         recordScore = bird[i].score;
       }
       reset = false;
-      bird[i].show();
+      if(s){
+        bird[i].show();
+      }
       bird[i].move(obstacles);
       bird[i].checkDeath(obstacles);
     }
@@ -62,10 +68,12 @@ function birdFunctions() {
   }
 }
 
-function obstacleFunctions() {
+function obstacleFunctions(s) {
   for (let i = 0; i < noOfObs; i++) {
     let cur = obstacles[i];
-    cur.show();
+    if(s){
+      cur.show();
+    }
     cur.move();
 
     if (cur.x + cur.w/2 <= 0) {

@@ -11,6 +11,7 @@ class Bird {
     this.score = 0;
     this.fitness = 0;
     this.brain = new NN(6, 20, 2, 1);
+    this.curIndex = 0;
   }
 
   show() {
@@ -36,23 +37,24 @@ class Bird {
       }
     }
 
+    if(index != this.curIndex){
+      this.curIndex = index;
+      this.score++;
+    }
+
     let ip = [];
 
     ip[0] = this.y / height;
     ip[1] = this.ySpeed / 20;
-    ip[2] = closestDist / width;
+    ip[2] = (closestDist + closest.w/2) / width;
     ip[3] = (closest.y1 + closest.h/2) / height;
     ip[4] = (closest.y2 - closest.h/2) / height;
-    ip[5] = closest.gap / height;
+    ip[5] = closest.xSpeed / 12;
 
     let op = this.brain.predict(ip);
 
     if(op[0] < op[1]){
       this.jump();
-    }
-
-    if(this.x - this.r == closest.x + closest.w/2){
-      this.score++;
     }
   }
 
@@ -78,7 +80,7 @@ class Bird {
   }
 
   copyBrain(toCopy){
-    this.brain = NN.copyNN(toCopy.brain);
+    this.brain.copyNN(toCopy.brain);
   }
 
   mutateBird(mr){

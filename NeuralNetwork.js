@@ -98,13 +98,11 @@ class NN {
     }
   }
 
-  static copyNN(toCopy){
-    let tmp = new NN();
-    tmp.total = toCopy.total;
+  copyNN(toCopy){
+    this.total = toCopy.total;
     for(let i = 0;i < toCopy.weights.length;i++){
-      tmp.weights[i] = Matrix.copyMatrix(toCopy.weights[i]);
-      tmp.biases[i] = Matrix.copyMatrix(toCopy.biases[i]);
+      this.weights[i].copyMatrix(toCopy.weights[i]);
+      this.biases[i].copyMatrix(toCopy.biases[i]);
     }
-    return tmp;
   }
 }
