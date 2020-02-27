@@ -10,7 +10,7 @@ class Bird {
     this.death = false;
     this.score = 0;
     this.fitness = 0;
-    this.brain = new NN(5, 20, 2, 1);
+    this.brain = new NN(6, 20, 2, 1);
   }
 
   show() {
@@ -41,9 +41,10 @@ class Bird {
     ip[0] = this.y / height;
     ip[1] = this.ySpeed / 20;
     ip[2] = closestDist / width;
-    ip[3] = closest.y1 / height;
-    ip[4] = closest.y2 / height;
-
+    ip[3] = (closest.y1 + closest.h/2) / height;
+    ip[4] = (closest.y2 - closest.h/2) / height;
+    ip[5] = closest.gap / height;
+    
     let op = this.brain.predict(ip);
 
     if(op[0] < op[1]){
