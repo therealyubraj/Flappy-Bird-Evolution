@@ -10,7 +10,7 @@ function setup() {
   createCanvas(640, 480);
 
   slider = createSlider(1, 20, 1);
-  obsGap = width - width/4;
+  obsGap = width;
   noOfObs = 3;
 
   for(let i = 0;i < popnSize;i++){
