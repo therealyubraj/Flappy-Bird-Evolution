@@ -44,7 +44,7 @@ class Bird {
     ip[3] = (closest.y1 + closest.h/2) / height;
     ip[4] = (closest.y2 - closest.h/2) / height;
     ip[5] = closest.gap / height;
-    
+
     let op = this.brain.predict(ip);
 
     if(op[0] < op[1]){
